@@ -58,7 +58,7 @@ void draw() {
 
   
   for (int i = N-2; i >= 0; i--) {
-    PVector v = PVector.sub(p[i+1], p[i]).setMag(L);// PVector v =PVector.sub(p[i+1],p[i]).normalize().mult(L);
+    PVector v =PVector.sub(p[i+1],p[i]).normalize().mult(L);
     p[i] = PVector.sub(p[i+1], v);
   }
 
@@ -83,3 +83,4 @@ void draw() {
     }
   }
 }
+
