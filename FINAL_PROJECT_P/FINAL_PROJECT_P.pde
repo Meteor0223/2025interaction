@@ -16,7 +16,7 @@ void setup() {
 }
 boolean [] point_eaten = new boolean[20];
 int N = 2;        // 目前節數（會變）
-int L = 15;        // 你原本是 300/20 = 15，建議直接寫死 15，比較好控制
+int L = 15;        // 身體間距
 PVector[] p;       // 不再寫死大小
 
 int x, y;
@@ -25,7 +25,7 @@ int dicx = 0, dicy = 0;
 boolean wasAddingSegment = false;  // 避免重複增加
 boolean nowAdding=false ; 
 void draw() {
-  background(255);
+  background(242,233,219);
 // 建立初始的鏈條（全部疊在中心）
   for (int i = 0; i < N; i++) {
     p = (PVector[]) append(p, new PVector(300+15*i, 300));
@@ -40,13 +40,13 @@ void draw() {
     if (x < 20)dicy =  1;
     if (y > 240)dicx =  1;
     if (y < 20)dicx = -1;
-    if (px + dicx*10 > 10 && px + dicx*10 < 590) px += dicx*10;//不超過最外面的牆
-    if (py + dicy*10 > 10 && py + dicy*10 < 590) py += dicy*10;
+    if (px + dicx*10 > 0 && px + dicx*10 < 600) px += dicx*10;//不超過最外面的牆
+    if (py + dicy*10 > 0 && py + dicy*10 < 600) py += dicy*10;
 
     if (nowAdding && !wasAddingSegment) {
       p = (PVector[]) append(p, new PVector(p[N-1].x, p[N-1].y));
       N++;                
-      println("增加一節！現在總長度 = " + N);
+      println("增加一節！總長度 = " + N);
     }
     wasAddingSegment = nowAdding;  // 記住這一幀有沒有在加（避免連續加很多節）
     nowAdding=false ;
@@ -63,7 +63,7 @@ void draw() {
   }
 
   for (int i = 0; i < N; i++) {
-    fill(0, 150, 0);
+    fill(0, 90+i*10, 0);
     ellipse(p[i].x, p[i].y, 20, 20);
   }
   fill(0);
@@ -78,9 +78,8 @@ void draw() {
   }
   for (int i=0;i<20;i++) {
     if (point_eaten[i] ==false) {
-        fill(0, 100, 255);
+        fill(random(0,255), random(150,255), random(100,255));
         ellipse(points[i].x,points[i].y, 16, 16);
     }
   }
 }
-
