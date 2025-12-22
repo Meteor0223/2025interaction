@@ -53,7 +53,7 @@ void draw() {
   }
 
 
-  p[N-1].x = px;
+  p[N-1].x = px; 
   p[N-1].y = py;
 
   
@@ -71,7 +71,7 @@ void draw() {
   
   //dist(px,py,b.x,b.y)<15
   for (int i=0;i<20;i++) {
-    if (dist(px,py,points[i].x,points[i].y)<15) {
+    if (dist(px,py,points[i].x,points[i].y)<15 && point_eaten[i] ==false) {
         point_eaten[i] =true;
         nowAdding=true;
     }
